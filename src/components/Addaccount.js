@@ -1,50 +1,65 @@
 import React, { useState } from "react";
 
 function Addaccount() {
-  const [bankName, setBankName] = useState();
-  const [amount, setAmount] = useState(0);
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    console.log("bankname ", bankName, " amount ", amount);
-  };
-  return (
-    <>
-      <div className="container m-5">
-        <form onSubmit={onSubmit} className="m-5">
-          <div class="row g-3">
-            <div className="col">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter the Bank Name"
-                aria-label="Bank name"
-                onChange={(e) => {
-                  setBankName(e.target.value);
-                }}
-              />
+    let userId = localStorage.getItem("userId");
+    const [user, setUser] = useState({ userId: userId, bankName: "", amount: "" });
+    const handleChange = (e) => {
+        console.log(user);
+        setUser({ ...user, [e.target.name]: e.target.value });
+    };
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const responce = await fetch("http://localhost:5000/account/addAccount", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+            });
+            const json = await responce.json();
+            if (json.success) {
+                alert("Added successful");
+            } else {
+                alert("Error");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    return (
+        <>
+            <div className="container m-5">
+                <form onSubmit={onSubmit} className="m-5">
+                    <div className="row g-3">
+                        <div className="col">
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Enter the Bank Name"
+                                name="bankName"
+                                aria-label="Bank name"
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="col">
+                            <input
+                                type="number"
+                                className="form-control"
+                                placeholder="Enter the amount"
+                                aria-label="amount"
+                                name="amount"
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="col-12">
+                            <button className="btn btn-primary">Add Account</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="col">
-              <input
-                type="number"
-                className="form-control"
-                placeholder="Enter the amount"
-                aria-label="amount"
-                onChange={(e) => {
-                  setAmount(e.target.value);
-                }}
-              />
-            </div>
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary">
-                Sign in
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </>
-  );
+        </>
+    );
 }
 
 export default Addaccount;
