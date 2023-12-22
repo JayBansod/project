@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../middleware/auth";
 function Navbar() {
+    const { isUserLogin } = useAuth();
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,39 +30,41 @@ function Navbar() {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link " aria-current="page" to="/show">
-                                    Show
+                                    Show Transction
                                 </Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link " aria-current="page" to="/add">
-                                    Add
+                                    Add Transction
                                 </Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link " aria-current="page" to="/self">
-                                    Self
+                                    Self Transfer
                                 </Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link " aria-current="page" to="/addaccount">
-                                    Add Account
+                                    Add New Bank
                                 </Link>
                             </li>
                         </ul>
-                        {/* {!localStorage.getItem("userId") ? ( */}
                         <form className="d-flex" role="search">
-                            <Link className="btn btn-primary  mx-2" to="/login" role="button">
-                                Login
-                            </Link>
-                            <Link className="btn btn-primary mx-2" to="/register" role="button">
-                                Register
-                            </Link>
+                            {isUserLogin ? (
+                                <Link className="btn btn-primary mx-2" to="/logout" role="button">
+                                    Logout
+                                </Link>
+                            ) : (
+                                <>
+                                    <Link className="btn btn-primary  mx-2" to="/login" role="button">
+                                        Login
+                                    </Link>
+                                    <Link className="btn btn-primary mx-2" to="/register" role="button">
+                                        Register
+                                    </Link>
+                                </>
+                            )}
                         </form>
-                        {/* ) : (
-              <button onClick={handleLogout} className="btn btn-primary">
-                Logout
-              </button>
-            )} */}
                     </div>
                 </div>
             </nav>

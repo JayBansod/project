@@ -23,9 +23,9 @@ const addAccount = async (req, res) => {
 
 const showBanks = async (req, res) => {
     try {
-        // console.log("from bank  controller", req.body);
-        // const { userId } = req.body;
-        const response = await bank_details.find();
+        // console.log("show banks bank_controller", req.veri);
+        let userId = req.veri.user.id;
+        const response = await bank_details.find({ userId: userId });
         // console.log("bank controller show banks", response);
         res.status(200).send(response);
     } catch (error) {
@@ -58,8 +58,8 @@ const getAccountBalance = async (req, res) => {
 const updateAccountBalance = async (req, res) => {
     try {
         const { userId, from, amount, action } = req.body;
-        console.log("updateAccountBalance bank_controller.js", req.body);
-        console.log(userId, " ", from, " ", amount, " ", action, " ");
+        // console.log("updateAccountBalance bank_controller.js", req.body);
+        // console.log(userId, " ", from, " ", amount, " ", action, " ");
         if (action === "add") {
             const update = await bank_details.findOneAndUpdate({ userId: userId, bankName: from }, { $inc: { amount: amount } });
             res.status(200).json(update);
@@ -75,8 +75,8 @@ const updateAccountBalance = async (req, res) => {
 const showAllTransction = async (req, res) => {
     try {
         let userId = req.veri.user.id;
-        console.log("showAlltransction", userId);
-        const allTransction = await Transaction.find();
+        console.log("showAlltransction bank_controller", userId);
+        const allTransction = await Transaction.find({ userId: userId });
         // console.log(allTransction);
         res.status(200).json(allTransction);
     } catch (error) {

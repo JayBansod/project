@@ -1,7 +1,7 @@
 import { useAuth } from "../middleware/auth";
 function Home() {
     const { accountData } = useAuth();
-    console.log("home.js ", accountData);
+    // console.log("home.js ", accountData);
     return (
         <>
             <div className="d-flex align-items-center " style={{ height: "100vh" }}>

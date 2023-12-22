@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/auth";
 const Login = () => {
     const navigate = useNavigate();
-    const { storeTokenInLS } = useAuth();
+    const { callFunctions, storeTokenInLS } = useAuth();
 
     const [user, setUser] = useState({ email: "", password: "" });
     //for redirect
@@ -27,6 +27,7 @@ const Login = () => {
                 console.log(json);
                 // store in the local storeage by using useContext
                 storeTokenInLS(json.token);
+                callFunctions(json.token);
                 navigate("/");
                 setUser({ email: "", password: "" });
             } else {

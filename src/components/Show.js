@@ -12,7 +12,7 @@ function Show() {
                             {accountData?.map((items, index) => {
                                 return (
                                     <>
-                                        <div>
+                                        <div key={index}>
                                             <p className="fs-5 border-bottom border-dark">{items.bankName}</p>
                                             <div className="border p-2 mb-2 bg-secondary bg-opacity-10 border rounded ">{items.amount}</div>
                                         </div>

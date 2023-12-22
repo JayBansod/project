@@ -59,12 +59,12 @@ const login = async (req, res) => {
         const checkCredential = await Credential.findOne({ email: email });
         //email not exist
         if (!checkCredential) {
-            res.status(400).json({ success, msg: "Email incorrect" });
+            return res.status(400).json({ success, msg: "Email incorrect" });
         }
         //comparing password
         const comparePassword = await bcrypt.compare(password, checkCredential.password);
         if (!comparePassword) {
-            res.status(400).json({ msg: "Password incorrect" });
+            return res.status(400).json({ msg: "Password incorrect" });
         }
         const data = {
             user: {

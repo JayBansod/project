@@ -8,6 +8,7 @@ import Self from "./components/Self";
 import Addaccount from "./components/Addaccount";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Logout from "./components/Logout";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                         <Route path="/addaccount" element={<Addaccount />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
+                        <Route path="/logout" element={<Logout />} />
                     </Routes>
                 </div>
             </Router>

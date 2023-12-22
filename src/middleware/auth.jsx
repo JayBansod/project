@@ -36,6 +36,9 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await fetch("http://localhost:5000/api/account/showAllBanks", {
                 method: "GET",
+                headers: {
+                    Authorization: token,
+                },
             });
             if (response.ok) {
                 const data = await response.json();
@@ -66,13 +69,37 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    // for logout
+    const logout = () => {
+        setToken("");
+        localStorage.removeItem("token");
+    };
+
+    // user is login or not
+    let isUserLogin = !!token;
+
+    // call functions
+    // const sayhello = () => {
+    //     console.log("say hello");
+    // };
+    const callFunctions = (userToken) => {
+        // sayhello();
+        // getAccountData(userToken);
+        // userAuthentication(userToken);
+        // showTranscation(userToken);
+    };
     useEffect(() => {
+        // setToken(localStorage.getItem("token"));
         getAccountData();
         userAuthentication();
         showTranscation();
     }, []);
 
-    return <AuthContext.Provider value={{ storeTokenInLS, userData, accountData, transction }}>{children}</AuthContext.Provider>;
+    return (
+        <AuthContext.Provider value={{ callFunctions, storeTokenInLS, userData, accountData, transction, logout, isUserLogin }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
 export const useAuth = () => {
