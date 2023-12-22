@@ -9,6 +9,7 @@ import Addaccount from "./components/Addaccount";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Logout from "./components/Logout";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/logout" element={<Logout />} />
+                        <Route path="/*" element={<PageNotFound />} />
                     </Routes>
                 </div>
             </Router>

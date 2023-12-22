@@ -78,7 +78,7 @@ function Add() {
                                 </div>
                                 <div className="mb-3">
                                     <label for="toStore" className="form-label">
-                                        TO
+                                        Store Name
                                     </label>
                                     <input
                                         type="text"

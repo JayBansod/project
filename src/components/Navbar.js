@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../middleware/auth";
 function Navbar() {
-    const { isUserLogin } = useAuth();
+    const { isUserLogin, userData } = useAuth();
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">
-                        Navbar
+                        {userData.username}
                     </Link>
                     <button
                         className="navbar-toggler"
