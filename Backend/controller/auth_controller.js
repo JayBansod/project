@@ -86,7 +86,7 @@ const login = async (req, res) => {
 const user = (req, res) => {
     try {
         const userData = req.user;
-        console.log("auth controller ", userData);
+        console.log("auth controller=>user ", userData);
         return res.status(200).json(userData);
     } catch (error) {
         console.log({ msg: error });

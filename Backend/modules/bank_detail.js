@@ -10,7 +10,7 @@ const userBank = new mongoose.Schema({
         required: true,
     },
     amount: {
-        type: String,
+        type: Number,
         default: "0",
     },
 });

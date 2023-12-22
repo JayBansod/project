@@ -1,10 +1,11 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [userData, setUserData] = useState("");
+    const [accountData, setAccountData] = useState([]);
     //for storing token
     const storeTokenInLS = (serverToken) => {
         return localStorage.setItem("token", serverToken);
@@ -27,11 +28,29 @@ export const AuthProvider = ({ children }) => {
             console.log(error);
         }
     };
+
+    // show all account
+    const getAccountData = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/api/account/showAllBanks", {
+                method: "GET",
+            });
+            if (response.ok) {
+                const data = await response.json();
+                console.log("getAccountData from auth ", data);
+                setAccountData(data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     useEffect(() => {
+        getAccountData();
         userAuthentication();
     }, []);
 
-    return <AuthContext.Provider value={{ storeTokenInLS, userData }}>{children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={{ storeTokenInLS, userData, accountData }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

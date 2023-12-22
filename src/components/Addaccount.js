@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../middleware/auth";
 function Addaccount() {
-    let userId = localStorage.getItem("userId");
-    const [user, setUser] = useState({ userId: userId, bankName: "", amount: "" });
+    const { userData } = useAuth();
+    const navigate = useNavigate();
+    let userId = userData._id;
+    const [user, setUser] = useState({ userId: userId, bankName: "", amount: "0" });
     const handleChange = (e) => {
         console.log(user);
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -10,7 +13,7 @@ function Addaccount() {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            const responce = await fetch("http://localhost:5000/account/addAccount", {
+            const responce = await fetch("http://localhost:5000/api/account/addAccount", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -20,6 +23,7 @@ function Addaccount() {
             const json = await responce.json();
             if (json.success) {
                 alert("Added successful");
+                navigate("/");
             } else {
                 alert("Error");
             }

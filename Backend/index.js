@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth/", auth_route);
-app.use("/account/", bank_route);
+app.use("/api/account/", bank_route);
 
 const port = 5000;
 connectToDB();
