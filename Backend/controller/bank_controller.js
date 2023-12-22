@@ -1,6 +1,7 @@
 const express = require("express");
 const bank_details = require("../modules/bank_detail");
 const Transaction = require("../modules/transaction");
+
 const addAccount = async (req, res) => {
     let success = false;
     try {
@@ -70,5 +71,17 @@ const updateAccountBalance = async (req, res) => {
         console.log(error);
     }
 };
+//show all transction
+const showAllTransction = async (req, res) => {
+    try {
+        let userId = req.veri.user.id;
+        console.log("showAlltransction", userId);
+        const allTransction = await Transaction.find();
+        // console.log(allTransction);
+        res.status(200).json(allTransction);
+    } catch (error) {
+        console.log(error);
+    }
+};
 
-module.exports = { addAccount, showBanks, addTransaction, getAccountBalance, updateAccountBalance };
+module.exports = { addAccount, showBanks, addTransaction, getAccountBalance, updateAccountBalance, showAllTransction };

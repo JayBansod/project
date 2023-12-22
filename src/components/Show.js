@@ -1,7 +1,8 @@
 import React from "react";
 import { useAuth } from "../middleware/auth";
 function Show() {
-    const { accountData } = useAuth();
+    const { accountData, transction } = useAuth();
+    console.log(transction);
     return (
         <>
             <div className="container">
@@ -35,39 +36,23 @@ function Show() {
                             </tr>
                         </thead>
                         <tbody className="table-group-divider">
-                            <tr id="tableRow">
-                                <td id="td1">1</td>
-                                <td id="td2">aasbs</td>
-                                <td id="td3">bsjbhjcba hsj</td>
-                                <td id="td4">21</td>
-                                <td id="td5">sca Lorem ipsum dolor sit amet consectetur</td>
-                                <td id="td6">
-                                    <button className="btn btn-success mx-2">Update</button>
-                                    <button className="btn btn-danger ">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>a</td>
-                                <td>b</td>
-                                <td>21</td>
-                                <td>aksncfkj</td>
-                                <td>
-                                    <button className="btn btn-success mx-2">Update</button>
-                                    <button className="btn btn-danger ">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>ajshjbfj jsb</td>
-                                <td>b</td>
-                                <td>21</td>
-                                <td>sca</td>
-                                <td>
-                                    <button className="btn btn-success mx-2">Update</button>
-                                    <button className="btn btn-danger ">Delete</button>
-                                </td>
-                            </tr>
+                            {transction?.map((items, index) => {
+                                return (
+                                    <>
+                                        <tr id="tableRow" key={index}>
+                                            <td id="td1">{index + 1}</td>
+                                            <td id="td2">{items.from}</td>
+                                            <td id="td3">{items.to}</td>
+                                            <td id="td4">{items.amount}</td>
+                                            <td id="td5">{items.discription}</td>
+                                            <td id="td6">
+                                                <button className="btn btn-success mx-2">Update</button>
+                                                <button className="btn btn-danger ">Delete</button>
+                                            </td>
+                                        </tr>
+                                    </>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>

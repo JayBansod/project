@@ -13,7 +13,7 @@ const authMiddleWare = async (req, res, next) => {
         const data = await Credential.find({ email: verified.user.email }).select({ password: 0 });
         console.log("authmiddleware", data);
         req.user = data[0];
-
+        req.veri = verified;
         next();
     } catch (error) {
         return res.status(401).json({ message: "Unauthorized, invalid Token", error });
