@@ -20,7 +20,7 @@ const Register = () => {
         e.preventDefault();
         try {
             console.log(user);
-            const responce = await fetch("https://jaybansod.github.io/api/auth/register", {
+            const responce = await fetch("http://localhost:5000/api/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "Application/json",
