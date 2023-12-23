@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     // get current user data
     const userAuthentication = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/auth/user", {
+            const response = await fetch("https://JayBansod.github.io/api/auth/user", {
                 method: "GET",
                 headers: {
                     Authorization: token,
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
     // show all account
     const getAccountData = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/account/showAllBanks", {
+            const response = await fetch("https://JayBansod.github.io/api/account/showAllBanks", {
                 method: "GET",
                 headers: {
                     Authorization: token,
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     //show all transcation
     const showTranscation = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/account/showAllTransction", {
+            const response = await fetch("https://JayBansod.github.io/api/account/showAllTransction", {
                 method: "GET",
                 headers: {
                     Authorization: token,
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log("getAccountData from auth.jsx ", data);
+                console.log("showTranscation from auth.jsx ", data);
                 setTransction(data);
             }
         } catch (error) {
@@ -79,24 +79,35 @@ export const AuthProvider = ({ children }) => {
     let isUserLogin = !!token;
 
     // call functions
-    // const sayhello = () => {
-    //     console.log("say hello");
-    // };
-    const callFunctions = (userToken) => {
-        // sayhello();
-        // getAccountData(userToken);
-        // userAuthentication(userToken);
-        // showTranscation(userToken);
+    const callGetAccountData = () => {
+        getAccountData();
+    };
+    const callUserAuthentication = () => {
+        userAuthentication();
+    };
+    const callShowTranscation = () => {
+        showTranscation();
     };
     useEffect(() => {
         // setToken(localStorage.getItem("token"));
-        getAccountData();
-        userAuthentication();
-        showTranscation();
+        // userAuthentication();
+        // showTranscation();
     }, []);
 
     return (
-        <AuthContext.Provider value={{ callFunctions, storeTokenInLS, userData, accountData, transction, logout, isUserLogin }}>
+        <AuthContext.Provider
+            value={{
+                callGetAccountData,
+                callUserAuthentication,
+                callShowTranscation,
+                storeTokenInLS,
+                userData,
+                accountData,
+                transction,
+                logout,
+                isUserLogin,
+            }}
+        >
             {children}
         </AuthContext.Provider>
     );

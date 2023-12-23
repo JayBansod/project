@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/auth";
 const Login = () => {
     const navigate = useNavigate();
-    const { callFunctions, storeTokenInLS } = useAuth();
+    const { storeTokenInLS } = useAuth();
 
     const [user, setUser] = useState({ email: "", password: "" });
     //for redirect
@@ -15,7 +15,7 @@ const Login = () => {
         e.preventDefault();
         try {
             console.log(user);
-            const responce = await fetch("http://localhost:5000/api/auth/login", {
+            const responce = await fetch("https://JayBansod.github.io/api/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "Application/json",
@@ -27,7 +27,6 @@ const Login = () => {
                 console.log(json);
                 // store in the local storeage by using useContext
                 storeTokenInLS(json.token);
-                callFunctions(json.token);
                 navigate("/");
                 setUser({ email: "", password: "" });
             } else {

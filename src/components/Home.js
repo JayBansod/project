@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import { useAuth } from "../middleware/auth";
 function Home() {
-    const { accountData } = useAuth();
+    const { accountData, callGetAccountData } = useAuth();
     // console.log("home.js ", accountData);
+    useEffect(() => {
+        callGetAccountData();
+    }, []);
     return (
         <>
             <div className="d-flex align-items-center " style={{ height: "100vh" }}>

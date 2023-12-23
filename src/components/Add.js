@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../middleware/auth";
 function Add() {
-    const { accountData, userData } = useAuth();
+    const { accountData, userData, callUserAuthentication } = useAuth();
+    useEffect(() => {
+        callUserAuthentication();
+    }, []);
     const userId = userData._id;
 
     const [transactionInfo, setTransactionInfo] = useState({ userId: userId, from: "", to: "", amount: 0, discription: "" });
@@ -23,7 +26,7 @@ function Add() {
             // console.log("transactionInfo", transactionInfo);
 
             // console.log("appdate account add.js", updateAccount);
-            const update = await fetch("http://localhost:5000/api/account/updateAccountBalance", {
+            const update = await fetch("https://JayBansod.github.io/api/account/updateAccountBalance", {
                 method: "POST",
                 headers: {
                     "Content-Type": "Application/json",
@@ -31,7 +34,7 @@ function Add() {
                 body: JSON.stringify(updateAccount),
             });
             // console.log("update add.js", update);
-            const response = await fetch("http://localhost:5000/api/account/addTransaction", {
+            const response = await fetch("https://JayBansod.github.io/api/account/addTransaction", {
                 method: "POST",
                 headers: {
                     "Content-Type": "Application/json",

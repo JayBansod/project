@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../middleware/auth";
 function Show() {
+    const { callGetAccountData, callShowTranscation } = useAuth();
+    useEffect(() => {
+        callGetAccountData();
+        callShowTranscation();
+    }, []);
     const { accountData, transction } = useAuth();
-    console.log(transction);
     return (
         <>
             <div className="container">

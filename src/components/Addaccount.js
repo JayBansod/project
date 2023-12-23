@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/auth";
 function Addaccount() {
-    const { userData } = useAuth();
+    const { callUserAuthentication } = useAuth();
+    useEffect(() => {
+        callUserAuthentication();
+    }, []);
     const navigate = useNavigate();
+    const { userData } = useAuth();
     let userId = userData._id;
+    console.log("userid addaccount.js", userId);
     const [user, setUser] = useState({ userId: userId, bankName: "", amount: "0" });
     const handleChange = (e) => {
         console.log(user);
-        setUser({ ...user, [e.target.name]: e.target.value });
+        setUser({ ...user, userId: userId, [e.target.name]: e.target.value });
     };
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            const responce = await fetch("http://localhost:5000/api/account/addAccount", {
+            const responce = await fetch("https://JayBansod.github.io/api/account/addAccount", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

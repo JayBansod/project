@@ -26,7 +26,7 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/logout" element={<Logout />} />
-                        <Route path="/*" element={<PageNotFound />} />
+                        <Route path="/*" element={<Login />} />
                     </Routes>
                 </div>
             </Router>
