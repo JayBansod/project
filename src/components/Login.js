@@ -15,7 +15,7 @@ const Login = () => {
         e.preventDefault();
         try {
             console.log(user);
-            const responce = await fetch("https://JayBansod.github.io/api/auth/login", {
+            const responce = await fetch("https://jaybansod.github.io/api/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "Application/json",

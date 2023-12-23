@@ -26,7 +26,7 @@ function Add() {
             // console.log("transactionInfo", transactionInfo);
 
             // console.log("appdate account add.js", updateAccount);
-            const update = await fetch("https://JayBansod.github.io/api/account/updateAccountBalance", {
+            const update = await fetch("https://jaybansod.github.io/api/account/updateAccountBalance", {
                 method: "POST",
                 headers: {
                     "Content-Type": "Application/json",
@@ -34,7 +34,7 @@ function Add() {
                 body: JSON.stringify(updateAccount),
             });
             // console.log("update add.js", update);
-            const response = await fetch("https://JayBansod.github.io/api/account/addTransaction", {
+            const response = await fetch("https://jaybansod.github.io/api/account/addTransaction", {
                 method: "POST",
                 headers: {
                     "Content-Type": "Application/json",

@@ -18,7 +18,7 @@ function Addaccount() {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            const responce = await fetch("https://JayBansod.github.io/api/account/addAccount", {
+            const responce = await fetch("https://jaybansod.github.io/api/account/addAccount", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

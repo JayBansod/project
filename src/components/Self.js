@@ -32,7 +32,7 @@ function Self() {
         };
         try {
             console.log("subMethod ", subMethod);
-            const debitDetail = await fetch("https://JayBansod.github.io/api/account/updateAccountBalance", {
+            const debitDetail = await fetch("https://jaybansod.github.io/api/account/updateAccountBalance", {
                 method: "POST",
                 headers: {
                     "Content-Type": "Application/json",
@@ -40,7 +40,7 @@ function Self() {
                 body: JSON.stringify(subMethod),
             });
             console.log("debitDetail", debitDetail);
-            const creditDetail = await fetch("https://JayBansod.github.io/api/account/updateAccountBalance", {
+            const creditDetail = await fetch("https://jaybansod.github.io/api/account/updateAccountBalance", {
                 method: "POST",
                 headers: {
                     "Content-Type": "Application/json",
@@ -48,7 +48,7 @@ function Self() {
                 body: JSON.stringify(addMethod),
             });
             console.log("creditDetail", creditDetail);
-            const response = await fetch("https://JayBansod.github.io/api/account/addTransaction", {
+            const response = await fetch("https://jaybansod.github.io/api/account/addTransaction", {
                 method: "POST",
                 headers: {
                     "Content-Type": "Application/json",

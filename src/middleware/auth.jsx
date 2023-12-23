@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     // get current user data
     const userAuthentication = async () => {
         try {
-            const response = await fetch("https://JayBansod.github.io/api/auth/user", {
+            const response = await fetch("https://jaybansod.github.io/api/auth/user", {
                 method: "GET",
                 headers: {
                     Authorization: token,
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
     // show all account
     const getAccountData = async () => {
         try {
-            const response = await fetch("https://JayBansod.github.io/api/account/showAllBanks", {
+            const response = await fetch("https://jaybansod.github.io/api/account/showAllBanks", {
                 method: "GET",
                 headers: {
                     Authorization: token,
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     //show all transcation
     const showTranscation = async () => {
         try {
-            const response = await fetch("https://JayBansod.github.io/api/account/showAllTransction", {
+            const response = await fetch("https://jaybansod.github.io/api/account/showAllTransction", {
                 method: "GET",
                 headers: {
                     Authorization: token,
